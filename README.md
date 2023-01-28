@@ -1,2 +1,2 @@
 # DSA
-Goal : Upload and solve complete Interviewbit problems
+Goal : Important Concept to be used while coding
