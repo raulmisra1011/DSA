@@ -1,0 +1,12 @@
+bool comp(pair<int,int> a, pair<int,int> b)
+{
+     bool ans=false;
+     if(a.first<b.first)
+       ans=true;
+    if(a.first==b.first)
+    {
+        if(a.second>b.second)
+          ans=true;
+    }
+    return ans;
+}
