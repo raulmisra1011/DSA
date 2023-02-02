@@ -1,0 +1,21 @@
+
+
+
+int Solution::hammingDistance(const vector<int> &A) 
+{
+    long ans = 0;
+    for(int i=0;i<32;i++)
+    {
+        long cnt = 0;
+        for(int j=0;j<A.size();j++)
+        {
+            if((A[j]&(1<<i)) != 0)
+                cnt++;
+        }
+        long long set = cnt%1000000007;
+        long long notset = A.size() - set;
+        ans = (ans + (set)*(notset)*2)%1000000007;
+    }
+    return ans%1000000007;
+    
+}
