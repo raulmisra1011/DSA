@@ -1,0 +1,61 @@
+bool help(vector<int> &A,int mid,int B)
+{
+    int cnt = 1;
+    int sum = 0;
+    for(int i=0;i<A.size();i++)
+    {
+        if(A[i] > mid)
+            return false;
+        else
+        {
+            if((sum + A[i]) <= mid)
+                {sum = sum + A[i];}
+            else
+            {
+                sum=0;
+                cnt++;
+                sum+=A[i];
+            }
+        }
+    }
+    if(cnt > B)
+        return false;
+    else
+        return true;
+   
+}
+
+
+int Solution::books(vector<int> &A, int B) 
+{
+    if(A.size() < B)
+        return -1;
+        
+    int start = 0;
+    int end = 0;
+    for(int i=0;i<A.size();i++)
+    {
+        start = max(start,A[i]);
+        end+=A[i];    
+    }
+    int ans = -1;
+    while(start <= end)
+    {
+        int mid = (start+end)/2;
+       
+        if(help(A,mid,B))
+        {
+            
+        ans = mid;
+        end = mid - 1;
+       
+        }        
+
+        else
+        {
+           start = mid + 1;
+            
+        }
+    }
+    return ans;
+}
