@@ -16,6 +16,6 @@ int Solution::pow(int x, int n, int d)
        }
    }
     if(x < 0)
-        return (output%d + d)%d;
+        return (output%d + d)%d;   % For calculating modulo of negative number
    return output%d;
 }
