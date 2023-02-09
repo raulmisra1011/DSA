@@ -1,0 +1,21 @@
+int Solution::pow(int x, int n, int d) 
+{
+   long long int output = 1;
+   long long int base = x;
+   while(n > 0)
+   {
+       if(n%2 == 0)
+       {
+           base = (base*base)%d;
+           n = n/2;
+       }
+       else
+       {
+           output = (output*base)%d;
+           n--;
+       }
+   }
+    if(x < 0)
+        return (output%d + d)%d;
+   return output%d;
+}
