@@ -1,0 +1,27 @@
+bool isPalindrome(string s)
+{
+    int i=0,j=s.size()-1;
+    while(i<j)
+    {
+        if(s[i]!=s[j]) return false;
+        i++;
+        j--;
+    }
+    return true;
+}
+int Solution::solve(string A) 
+{
+    int i=0,j=A.size()-1;
+    while(i<j)
+    {
+        if(A[i]!=A[j]) break;
+        i++;
+        j--;
+    }
+    if(i>=j) return 1;
+    string s1=A.substr(0,i)+A.substr(i+1);
+    if(isPalindrome(s1)) return 1;
+    string s2=A.substr(0,j)+A.substr(j+1);
+    if(isPalindrome(s2)) return 1;
+    return 0;
+}
