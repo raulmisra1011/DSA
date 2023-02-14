@@ -1,0 +1,77 @@
+
+
+vector<string> ones = {"","one ","two ","three ","four ","five ","six " ,"seven ","eight ","nine ","ten ","eleven ","twelve ","thirteen ","fourteen ","fifteen ","sixteen ","seventeen ","eighteen ","nineteen "};
+vector<string> tens ={"","","twenty ","thirty ","forty ","fifty ","sixty ","seventy ","eighty ","ninety "};
+
+string numToWords(int n, string s)
+{
+    string str = "";
+    // if n is more than 19, divide it
+    if (n > 19)
+        str += tens[n/10] + ones[n%10];
+    else
+        str += ones[n];
+ 
+    // if n is non-zero
+    if (n)
+        str += s;
+ 
+    return str;
+}
+
+
+
+int Solution::solve(string num, string words) 
+{
+    int n = stoi(num);
+
+    string s1 =" ";
+    for(int i=0 ;i<words.length();i++)
+    {
+        if(words[i] == '-')
+        {
+            words.replace(words.begin() + i, words.begin() + i + 1," ");
+        }
+    }
+
+    // stores word representation of given number n
+    string out;
+ 
+    out += numToWords((n / 1000000000), "arab ");
+    // handles digits at ten millions and hundred
+    // millions places (if any)
+    out += numToWords((n / 10000000), "crore ");
+ 
+    // handles digits at hundred thousands and one
+    // millions places (if any)
+    out += numToWords(((n / 100000) % 100), "lakh ");
+ 
+    // handles digits at thousands and tens thousands
+    // places (if any)
+    out += numToWords(((n / 1000) % 100), "thousand ");
+ 
+    // handles digit at hundreds places (if any)
+    out += numToWords(((n / 100) % 10), "hundred ");
+
+    if (n > 100 && n % 100)
+        out += "and ";
+ 
+    // handles digits at ones and tens places (if any)
+    out += numToWords((n % 100), "");
+   
+    
+    //Handling the n=0 case
+    if(out=="")
+    out = "zero";
+    
+
+//cout<<out<<endl<<words<<endl;
+
+
+    out.replace(out.end() - 1, words.begin(),"");
+    int ans =  words.compare(out);
+    if(ans == 0)
+        return 1;
+    else
+        return 0; 
+}
