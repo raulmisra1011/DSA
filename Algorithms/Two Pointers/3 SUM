@@ -65,3 +65,33 @@ int main()
         cout<<endl;
     }
 }
+
+
+#  Type 2
+
+int Solution::threeSumClosest(vector<int> &v, int target) 
+{
+     vector<vector<int>> a;
+    sort(v.begin(),v.end());
+    long long sum = 0;
+    long long bestSum = 1000000000;
+    for(int i=0;i<v.size()-2;i++)
+    {
+        int ptr1 = i+1;
+        int ptr2 = v.size() - 1;
+
+        while(ptr1 < ptr2)
+        {
+            sum = v[i] + v[ptr1] + v[ptr2];
+
+            if(abs(target - sum) < abs(target - bestSum))
+            {
+                bestSum = sum;
+            }
+            if(sum > target) ptr2--;
+            else
+            {ptr1++;}
+        }
+    }
+    return bestSum;
+}
