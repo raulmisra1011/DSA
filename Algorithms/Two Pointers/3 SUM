@@ -1,0 +1,67 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+vector<vector<int>> solve(vector<int> &v)
+{
+    vector<vector<int>> a;
+    sort(v.begin(),v.end());
+   /* for(int i=0;i<v.size();i++)
+    {
+        cout<<v[i]<<" ";
+    }
+    cout<<endl; */
+    
+    for(int i=0;i<v.size() - 2;i++)
+    {
+        
+        int num = -1*(v[i]);
+        int low = i+1;
+        int high = v.size() - 1;
+        if((i == 0) || (v[i] != v[i-1]))
+        { 
+        while(low < high)
+        {
+            
+            if((v[low] + v[high]) == num)
+            {
+                vector<int> p;
+                p.push_back(v[i]);
+                p.push_back(v[low]);
+                p.push_back(v[high]);
+                
+                while((low < high) && (v[low] == v[low+1])) low++;
+                while((low < high) && (v[high] == v[high-1])) high--; 
+                a.push_back(p);
+                low++;
+                high--;
+                p.clear();
+            }
+           else if((v[low] + v[high]) > num)
+           {
+                high--;
+           }
+           else{
+            low++;
+           }
+        }
+       }
+
+    }
+    return a;
+
+}
+
+int main()
+{
+    vector<int> v = {-1,0,1,2,-1,-4};
+    vector<vector<int>> a = solve(v);
+
+    for(int i=0;i<a.size();i++)
+    {
+        for(int j=0;j<a[0].size();j++)
+        {
+            cout<<a[i][j]<<" ";
+        }
+        cout<<endl;
+    }
+}
